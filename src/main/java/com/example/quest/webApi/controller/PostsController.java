@@ -2,6 +2,7 @@ package com.example.quest.webApi.controller;
 
 import com.example.quest.business.abstracts.IPostService;
 import com.example.quest.entities.concretes.Post;
+import com.example.quest.entities.dtos.PostRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class PostsController {
         return this.iPostService.getAll();
     }
     @PostMapping("/")
-    public void add(@RequestBody Post post){
-        this.iPostService.add(post);
+    public void add(@RequestBody PostRequest postRequest){
+        this.iPostService.add(postRequest);
     }
 }
