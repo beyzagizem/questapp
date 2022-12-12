@@ -7,5 +7,4 @@ public class PostRequest {
     private String postTitle;
     private String postDescription;
     private int userId;
-
 }

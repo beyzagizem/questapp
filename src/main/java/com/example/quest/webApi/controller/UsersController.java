@@ -1,7 +1,10 @@
 package com.example.quest.webApi.controller;
 
 import com.example.quest.business.abstracts.IUserService;
+import com.example.quest.core.utilities.result.DataResult;
+import com.example.quest.core.utilities.result.Result;
 import com.example.quest.entities.concretes.User;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +19,12 @@ public class UsersController {
     }
 
     @GetMapping("/")
-
-    public List<User> getAll(){
+    public DataResult<List<User>> getAll(){
         return this.iUserService.getAll();
     }
     @PostMapping("/")
-    public void add( @RequestBody User user){
-        this.iUserService.add( user );
+    public Result add(@Valid @RequestBody User user){
+       return (this.iUserService.add( user ));
     }
 
 }

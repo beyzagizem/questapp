@@ -3,6 +3,7 @@ package com.example.quest.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class User {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
+    @NotBlank(message = "Name alanı boş olamaz")
     private String name;
     @Column(name = "email")
     private String email;

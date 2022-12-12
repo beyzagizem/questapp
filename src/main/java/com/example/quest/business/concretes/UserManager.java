@@ -1,6 +1,7 @@
 package com.example.quest.business.concretes;
 
 import com.example.quest.business.abstracts.IUserService;
+import com.example.quest.core.utilities.result.*;
 import com.example.quest.dataAccess.abstracts.IUserRepository;
 import com.example.quest.entities.concretes.User;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,18 @@ public class UserManager implements IUserService {
     }
 
     @Override
-    public void add(User user) {
+    public Result add(User user) {
+
         iUserRepository.save(user);
+        return new SuccessResult("Başarıyla eklendi");
 
     }
 
     @Override
-    public List<User> getAll() {
-        return iUserRepository.findAll();
+    public DataResult<List<User>> getAll() {
+//        if(true){
+//            return new ErrorDataResult("Kullanıcılar listelenirken bir hata oluştu");
+//        }
+        return new SuccessDataResult<List<User>>(iUserRepository.findAll(),"Kullanıcılar listelendi");
     }
 }
