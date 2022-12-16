@@ -1,6 +1,7 @@
 package com.example.quest.entities.concretes;
 
 
+import com.example.quest.core.utility.customvalidation.ContactNumberConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,6 +22,10 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+
+    @ContactNumberConstraint
+    @Column(name="phone")
+    private String phone;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")

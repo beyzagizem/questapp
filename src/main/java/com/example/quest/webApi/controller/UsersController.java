@@ -2,6 +2,7 @@ package com.example.quest.webApi.controller;
 
 import com.example.quest.business.abstracts.IUserService;
 import com.example.quest.entities.concretes.User;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class UsersController {
         return this.iUserService.getAll();
     }
     @PostMapping("/")
-    public void add( @RequestBody User user){
+    public void add( @RequestBody @Valid User user){
         this.iUserService.add( user );
     }
 
