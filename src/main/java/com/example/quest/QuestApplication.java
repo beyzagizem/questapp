@@ -1,5 +1,6 @@
 package com.example.quest;
 
+import com.example.quest.entities.concretes.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -10,6 +10,7 @@ import com.example.quest.entities.concretes.dtos.PostRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentManager implements ICommentService {
@@ -23,10 +24,10 @@ public class CommentManager implements ICommentService {
 
     @Override
     public void add(CommentRequest commentRequest) {
-        iCommentRepository.save(convertFromPostRequestToPost(commentRequest));
+        iCommentRepository.save(convertFromCommentRequestToComment(commentRequest));
 
     }
-    public Comment convertFromPostRequestToPost(CommentRequest commentRequest){
+    public Comment convertFromCommentRequestToComment(CommentRequest commentRequest){
         Comment comment=new Comment();
         Post post = new Post();
         User user = new User();
@@ -41,5 +42,25 @@ public class CommentManager implements ICommentService {
     @Override
     public List<Comment> getAll() {
         return iCommentRepository.findAll();
+    }
+
+    @Override
+    public Optional<Comment> updateOneComment(int id, Comment newComment) {
+        Optional<Comment> comment= iCommentRepository.findById(id);
+        if(comment.isPresent()){
+            Comment existComment =comment.get();
+            existComment.setDescription(newComment.getDescription());
+
+            iCommentRepository.save(existComment);
+        }
+        else {
+            return null;
+        }
+        return comment;
+    }
+
+    @Override
+    public void deleteOneComment(int id) {
+        iCommentRepository.deleteById(id);
     }
 }

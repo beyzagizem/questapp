@@ -2,9 +2,12 @@ package com.example.quest.webApi.controller;
 
 import com.example.quest.business.abstracts.ILikeService;
 import com.example.quest.entities.concretes.Like;
+import com.example.quest.entities.concretes.User;
+import com.example.quest.entities.concretes.dtos.LikeRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/likes/")
@@ -21,7 +24,13 @@ ILikeService iLikeService;
         return this.iLikeService.getAll();
     }
     @PostMapping("/")
-    public void add(@RequestBody Like like){
-        this.iLikeService.add(like);
+    public void add(@RequestBody LikeRequest likeRequest){
+        this.iLikeService.add(likeRequest);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteOneLike(@PathVariable int id){
+        iLikeService.deleteOneLike(id);
     }
 }

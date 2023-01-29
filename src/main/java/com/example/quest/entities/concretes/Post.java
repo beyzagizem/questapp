@@ -3,6 +3,8 @@ package com.example.quest.entities.concretes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.List;
@@ -23,8 +25,9 @@ public class Post {
     private Date createdAt= new Date();
     @Column(name="post_description")
     private  String postDescription;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private  User user;
 
     @JsonIgnore

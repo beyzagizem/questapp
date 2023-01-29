@@ -1,5 +1,6 @@
 package com.example.quest.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,11 +16,11 @@ public class Comment {
     @Column(name ="description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "post_id")
     private  Post post;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name= "user_id")
     private User user;
 

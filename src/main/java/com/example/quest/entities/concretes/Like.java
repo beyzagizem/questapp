@@ -13,11 +13,11 @@ public class Like {
     @Column(name="id")
     private  int id;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "post_id")
     private  Post post;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="user_id")
     private  User user;
 }
